@@ -1,4 +1,4 @@
-package server;
+package myArrayList.server;
 
 import myArrayList.exception.ValueNotFoundException;
 import myArrayList.server.StringList;
