@@ -26,7 +26,7 @@ public class IntegerListImpl implements IntegerList {
     }
 
     private static Integer[] myGrow(Integer[] array) {
-        Integer[] arrayNew = Arrays.copyOf(array, array.length + 1);
+        Integer[] arrayNew = Arrays.copyOf(array, (int) (array.length + (array.length) * 1.5));
         return arrayNew;
     }
 
@@ -229,15 +229,37 @@ public class IntegerListImpl implements IntegerList {
     }
 
     private void sort() {
-        for (int i = 1; i < capacity; i++) {
-            int temp = array[i];
-            int j = i;
-            while (j > 0 && array[j - 1] >= temp) {
-                array[j] = array[j - 1];
-                j--;
-            }
-            array[j] = temp;
+        quickSort(array, 0, capacity-1);
+    }
+
+
+    private void quickSort(Integer[] arr, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
         }
+    }
+
+    private int partition(Integer[] arr, int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin - 1);
+
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swapElements(arr, i, j);
+            }
+        }
+        swapElements(arr, i + 1, end);
+        return i + 1;
+    }
+
+    private static void swapElements(Integer[] arr, int indexA, int indexB) {
+        int tmp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = tmp;
     }
 
     @Override

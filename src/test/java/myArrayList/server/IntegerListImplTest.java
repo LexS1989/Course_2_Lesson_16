@@ -1,4 +1,4 @@
-package server;
+package myArrayList.server;
 
 import myArrayList.exception.ValueNotFoundException;
 import myArrayList.server.IntegerList;
@@ -44,7 +44,7 @@ class IntegerListImplTest {
 
     @Test
     public void addByIndexAndItemAndWithArrayExpansionPositiveTest() {
-        IntegerList expected = new IntegerListImpl(3);
+        IntegerList expected = new IntegerListImpl(5);
         expected.add(101);
         expected.add(103);
         expected.add(102);
